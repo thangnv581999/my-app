@@ -7,6 +7,7 @@ import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound';
 import Men from '../pages/Men'
 import Brand from '../pages/Brand';
+import Women from '../pages/Women';
 
 const AppRoutes = () => {
   return (
@@ -17,7 +18,7 @@ const AppRoutes = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/men' element={<Men />} /> 
         <Route path='/brand' element={<Brand />} />
-        {/* Add more routes here */}
+        <Route path='/women' element={<Women />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
