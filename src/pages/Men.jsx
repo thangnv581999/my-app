@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Men.css';
+import Product from '../components/Product/Product';
+import t1 from '../assets/t1.webp';
 
 const Men = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -11,6 +13,61 @@ const Men = () => {
     colour: true,
     size: true
   });
+
+  // Sample products data
+  const products = [
+    {
+      id: 1,
+      name: 'Print Tee #7',
+      price: 232.00,
+      image: t1,
+      colors: ['#CCCCCC', '#FFFFFF']
+    },
+    {
+      id: 2,
+      name: 'Print Tee #8',
+      price: 232.00,
+      image: t1,
+      colors: ['#CCCCCC', '#000000']
+    },
+    {
+      id: 3,
+      name: 'Print Pocket Tee',
+      price: 184.00,
+      image: t1,
+      colors: ['#000000', '#FF6B6B']
+    },
+    {
+      id: 4,
+      name: 'Pull Over Crewneck Sweat Shirt',
+      price: 460.00,
+      image: t1,
+      colors: ['#A4C2F4', '#FFFFFF']
+    },
+    {
+      id: 5,
+      name: 'Pull Over Crewneck Sweat Shirt',
+      price: 460.00,
+      image: t1,
+      colors: ['#A4C2F4', '#FFFFFF']
+    }
+    ,
+    {
+      id: 6,
+      name: 'Pull Over Crewneck Sweat Shirt',
+      price: 460.00,
+      image: t1,
+      colors: ['#A4C2F4', '#FFFFFF']
+    }
+    ,
+    {
+      id: 7,
+      name: 'Pull Over Crewneck Sweat Shirt',
+      price: 460.00,
+      image: t1,
+      colors: ['#A4C2F4', '#FFFFFF']
+    }
+  ];
 
   const categories = [
     { name: 'Accessories', count: 75 },
@@ -136,7 +193,7 @@ const Men = () => {
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="featured">Featured</option>
+            <option value="featured">Sort by</option>
             <option value="newest">Newest</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
@@ -145,20 +202,30 @@ const Men = () => {
         </div>
       </div>
 
-      {/* Filter Panel */}
-      {isFilterOpen && (
-        <div className="filter-panel">
-          {renderFilterGroup('Category', categories, 'category')}
-          {renderFilterGroup('Brand', brands, 'brand')}
-          {renderFilterGroup('Gender', genders, 'gender')}
-          {renderFilterGroup('Colour', colours, 'colour')}
-          {renderFilterGroup('Size', sizes, 'size')}
-        </div>
-      )}
+      <div className="content-container">
+        {/* Filter Panel */}
+        {isFilterOpen && (
+          <aside className="filter-panel">
+            {renderFilterGroup('Category', categories, 'category')}
+            {renderFilterGroup('Brand', brands, 'brand')}
+            {renderFilterGroup('Gender', genders, 'gender')}
+            {renderFilterGroup('Colour', colours, 'colour')}
+            {renderFilterGroup('Size', sizes, 'size')}
+          </aside>
+        )}
 
-      {/* Products Grid */}
-      <div className="products-grid">
-        {/* Add your product cards here */}
+        {/* Products Grid */}
+        <div className="products-grid">
+          {products.map(product => (
+            <Product
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              colors={product.colors}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
