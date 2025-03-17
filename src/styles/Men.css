@@ -94,6 +94,11 @@
   gap: 2rem;
 }
 
+/* When filter is hidden */
+.content-container:not(:has(.filter-panel)) {
+  display: block;
+}
+
 /* Filter Panel */
 .filter-panel {
   background: white;
@@ -175,8 +180,17 @@
 /* Products Grid */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
+}
+
+/* Grid with filter */
+.filter-panel + .products-grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* Grid without filter - exactly 4 columns */
+.content-container:not(:has(.filter-panel)) .products-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 /* Responsive Design */
@@ -193,6 +207,11 @@
     display: block;
     margin-bottom: 2rem;
   }
+
+  /* Keep 4 columns on tablet when possible */
+  .content-container:not(:has(.filter-panel)) .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -206,8 +225,16 @@
     align-items: stretch;
   }
 
+  /* Switch to 2 columns on mobile */
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Single column on very small screens */
+  .products-grid {
+    grid-template-columns: 1fr !important;
   }
 }
