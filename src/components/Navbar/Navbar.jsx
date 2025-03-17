@@ -10,13 +10,28 @@ function Navbar() {
             <div className={cx("logo")}>LOGO</div>
             <ul className={cx("nav-links")}>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/new-arrivals">NEW ARRIVALS</Link>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/brand">BRAND</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/men">MEN</Link>
+                </li>
+                <li>
+                    <Link to="/women">WOMEN</Link>
+                </li>
+                <li>
+                    <Link to="/kids">KIDS</Link>
+                </li>
+                <li>
+                    <Link to="/lifestyle">LIFESTYLE</Link>
+                </li>
+                <li>
+                    <Link to="/gallery">GALLERY</Link>
+                </li>
+                <li>
+                    <Link to="/news">NEWS</Link>
                 </li>
             </ul>
         </nav>

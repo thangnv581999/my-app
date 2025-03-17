@@ -10,24 +10,39 @@
     .logo {
         font-size: 24px;
         font-weight: bold;
+        min-width: 120px;
     }
 
     .nav-links {
         list-style: none;
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
+        margin-left: auto;
 
         li {
             a {
                 color: white;
                 text-decoration: none;
                 transition: 0.3s;
-                font-size: 1.1rem;
-                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                font-weight: 500;
+                padding: 0.5rem 0.75rem;
+                letter-spacing: 0.5px;
 
                 &:hover {
                     color: #f39c12;
                 }
+            }
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .nav-links {
+            gap: 1rem;
+            
+            li a {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.5rem;
             }
         }
     }
