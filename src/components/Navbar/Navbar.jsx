@@ -70,7 +70,7 @@ function Navbar() {
       </ul>
 
       <div className={cx("logo")}>
-        <img src="/bapelogo.png" alt="Bape Logo" />
+        <img src="images/logo2.jpg" alt="Bape Logo" />
       </div>
 
       <div className={cx("nav-icons")}>

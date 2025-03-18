@@ -86,15 +86,15 @@
 
 .submit-btn:hover {
   background-color: #0056b3;
-}
+} 
 
 /* Slideshow toàn màn hình ngay dưới navbar */
 .slideshow {
   position: relative;
-  width: 100%;
-  height: 93vh; /* Điều chỉnh nếu muốn */
+  width: auto;
+  height: calc(100vh - -20px); /* Điều chỉnh nếu muốn */
   overflow: hidden;
-  margin-top: -35px; /* Để tránh che mất navbar */
+  margin-top: auto; /* Để tránh che mất navbar */
 }
 
 /* Ảnh slideshow */
@@ -215,24 +215,28 @@
 
 .fashion-collection {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  max-width: 1200px;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1520px;
   margin: 4rem auto;
+}
+
+.fashion-row {
+  display: flex;
+  gap: 10px;
 }
 
 .fashion-image {
   position: relative;
-  width: 50%;
   overflow: hidden;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .fashion-image img {
   width: 100%;
-  display: block;
-  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 10px; */
   transition: transform 0.3s ease-in-out;
 }
 
@@ -242,16 +246,32 @@
 
 .fashion-text {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
+}
+
+.fashion-row:first-child .fashion-image {
+  flex: 1; /* Chia đều 2 ảnh lớn */
+  height: auto; /* Điều chỉnh kích thước */
+}
+
+/* Hàng dưới: 3 ảnh nhỏ */
+.fashion-row:last-child {
+  display: flex;
+  gap: 10px;
+}
+
+.fashion-row:last-child .fashion-image {
+  flex: 1;
+  height: auto; /* Giảm kích thước */
 }
 
 .brand-section {
@@ -278,23 +298,23 @@
 
 .brand-list {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between; /* Dàn đều ảnh */
+  gap: 0; /* Xóa khoảng cách giữa các ảnh */
+  flex-wrap: nowrap; /* Đảm bảo tất cả ảnh nằm trên 1 hàng */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
 }
 
 .brand-card {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 10px;
+  width: calc(100% / 6); /* Chia đều 6 ảnh */
+  height: auto; /* Giữ nguyên tỷ lệ ảnh */
+  padding-inline: 5px;
 }
 
 .brand-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  object-fit: cover; /* Cắt ảnh cho vừa khung */
+  transition: transform 0.3s ease-in-out;
 }
 
 .brand-card img:hover {

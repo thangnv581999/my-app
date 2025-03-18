@@ -3,7 +3,12 @@ import "../styles/Home.css";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = ["/images/b1.jpg", "/images/b2.jpg", "/images/b3.jpg"];
+  const images = [
+    "/images/b4.jpg",
+    "/images/b2.jpg",
+    "/images/b1.jpg",
+    "/images/b3.jpg",
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,7 +45,7 @@ const Home = () => {
             <p>$232.00</p>
           </div>
           <div className="product-card">
-            <img src="/images/ao2.png" alt="Print Tee #8" />
+            <img src="/images/ao2.jpg" alt="Print Tee #8" />
             <h3>Print Tee #8</h3>
             <p>$232.00</p>
           </div>
@@ -54,16 +59,41 @@ const Home = () => {
 
       {/* Nội dung bên dưới slideshow */}
       <div className="fashion-collection">
-        <div className="fashion-image">
-          <img src="/images/BAPE1.jpg" alt="Mr. Bathing Ape" />
-          <div className="fashion-text">
-            <h2>Mr. BATHING APE</h2>
+        {/* Hàng đầu: 2 ảnh lớn */}
+        <div className="fashion-row">
+          <div className="fashion-image">
+            <img src="/images/img2.webp" alt="Mr. Bathing Ape" />
+            <div className="fashion-text">
+              <h2>SHOP NOW</h2>
+            </div>
+          </div>
+          <div className="fashion-image">
+            <img src="/images/img1.webp" alt="BAPE BLACK" />
+            <div className="fashion-text">
+              <h2>SHOP NOW</h2>
+            </div>
           </div>
         </div>
-        <div className="fashion-image">
-          <img src="/images/BAPE2.jpg" alt="BAPE BLACK" />
-          <div className="fashion-text">
-            <h2>BAPE BLACK</h2>
+
+        {/* Hàng thứ hai: 3 ảnh nhỏ */}
+        <div className="fashion-row">
+          <div className="fashion-image">
+            <img src="/images/men.jpg" alt="Men Collection" />
+            <div className="fashion-text">
+              <h2>SHOP MEN</h2>
+            </div>
+          </div>
+          <div className="fashion-image">
+            <img src="/images/women.jpg" alt="Women Collection" />
+            <div className="fashion-text">
+              <h2>SHOP WOMEN</h2>
+            </div>
+          </div>
+          <div className="fashion-image">
+            <img src="/images/kid.jpg" alt="Kids Collection" />
+            <div className="fashion-text">
+              <h2>SHOP KIDS</h2>
+            </div>
           </div>
         </div>
       </div>
@@ -79,13 +109,16 @@ const Home = () => {
             <img src="/images/br2.jpg" alt="BAPE BLACK" />
           </div>
           <div className="brand-card">
-            <img src="/images/br3.png" alt="Baby Milo" />
+            <img src="/images/br3.jpg" alt="Baby Milo" />
           </div>
           <div className="brand-card">
             <img src="/images/br4.jpg" alt="Aape" />
           </div>
           <div className="brand-card">
             <img src="/images/br5.jpg" alt="Bapy" />
+          </div>
+          <div className="brand-card">
+            <img src="/images/br6.jpg" alt="Aape" />
           </div>
         </div>
       </div>
