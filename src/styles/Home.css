@@ -86,4 +86,217 @@
 
 .submit-btn:hover {
   background-color: #0056b3;
-} 
+}
+
+/* Slideshow toàn màn hình ngay dưới navbar */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 93vh; /* Điều chỉnh nếu muốn */
+  overflow: hidden;
+  margin-top: -35px; /* Để tránh che mất navbar */
+}
+
+/* Ảnh slideshow */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+  animation: zoomEffect 5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+/* Hiệu ứng zoom in/out */
+@keyframes zoomEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Tiêu đề h1 trong slideshow */
+.slide h1 {
+  color: white;
+  font-size: 3rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+/* Đảm bảo nội dung nằm dưới slideshow */
+.content {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* New Arrivals Section */
+.new-arrivals {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.new-arrivals h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+  position: relative;
+}
+
+.new-arrivals h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: black;
+  margin: 0.5rem auto 5rem auto;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card {
+  background: white;
+  border-radius: 8px;
+  width: 115%;
+  padding: 1rem;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.product-card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.fashion-collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 4rem auto;
+}
+
+.fashion-image {
+  position: relative;
+  width: 50%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.fashion-image img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fashion-image:hover img {
+  transform: scale(1.05);
+}
+
+.fashion-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.brand-section {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.brand-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.brand-section h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: black;
+  margin: 8px auto 0;
+}
+
+.brand-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand-card {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.brand-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.brand-card img:hover {
+  transform: scale(1.1);
+}
