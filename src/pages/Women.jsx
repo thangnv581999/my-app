@@ -1,378 +1,183 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Women.css';
-import Product from '../components/Product/Product';
-import t1 from '../assets/t1.webp';
-import t2 from '../assets/t2.webp';
+import womenImage from '../assets/women.avif'; // Import the image
+import women2Image from '../assets/women2.avif';
+import women3Image from '../assets/women3.avif';
+import womenProduct from '../assets/womenproduct.avif';
+import WomenProduct from '../components/WomenProduct';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-// Sample data for filter options
-const filterData = {
-    category: [
-        { id: 1, name: 'Dresses', count: 45 },
-        { id: 2, name: 'Tops', count: 38 },
-        { id: 3, name: 'T-Shirts', count: 25 },
-        { id: 4, name: 'Sweaters', count: 20 },
-        { id: 5, name: 'Jeans', count: 30 },
-        { id: 6, name: 'Pants', count: 28 },
-        { id: 7, name: 'Skirts', count: 22 },
-        { id: 8, name: 'Activewear', count: 15 },
-        { id: 9, name: 'Swimwear', count: 12 },
-        { id: 10, name: 'Outerwear', count: 18 },
-        { id: 11, name: 'Accessories', count: 40 },
-        { id: 12, name: 'Shoes', count: 35 }
-    ],
-    style: [
-        { id: 1, name: 'Casual', count: 85 },
-        { id: 2, name: 'Formal', count: 45 },
-        { id: 3, name: 'Party', count: 30 },
-        { id: 4, name: 'Business', count: 25 },
-        { id: 5, name: 'Vacation', count: 20 }
-    ],
-    size: [
-        { id: 1, name: 'XS', count: 45 },
-        { id: 2, name: 'S', count: 62 },
-        { id: 3, name: 'M', count: 75 },
-        { id: 4, name: 'L', count: 58 },
-        { id: 5, name: 'XL', count: 42 },
-        { id: 6, name: 'XXL', count: 28 }
-    ],
-    color: [
-        { id: 1, name: 'Black', count: 55 },
-        { id: 2, name: 'White', count: 48 },
-        { id: 3, name: 'Red', count: 25 },
-        { id: 4, name: 'Blue', count: 32 },
-        { id: 5, name: 'Pink', count: 28 },
-        { id: 6, name: 'Green', count: 18 }
-    ],
-    price: [
-        { id: 1, name: 'Under $50', count: 45 },
-        { id: 2, name: '$50 - $100', count: 65 },
-        { id: 3, name: '$100 - $200', count: 38 },
-        { id: 4, name: 'Over $200', count: 22 }
-    ]
-};
-
-// Sample product data for women's collection
-const sampleProducts = [
-    {
-        id: 1,
-        name: "Floral Summer Dress",
-        price: 79.99,
-        image: t1,
-        colors: ['#FF69B4', '#98FB98', '#87CEEB'],
-        category: 'Dresses',
-        style: 'Casual',
-        size: ['S', 'M', 'L']
-    },
-    {
-        id: 2,
-        name: "Classic Denim Jeans",
-        price: 89.99,
-        image: t2,
-        colors: ['#000080', '#4169E1'],
-        category: 'Jeans',
-        style: 'Casual',
-        size: ['XS', 'S', 'M', 'L']
-    },
-    {
-        id: 3,
-        name: "Elegant Evening Gown",
-        price: 299.99,
-        image: t1,
-        colors: ['#000000', '#FF0000'],
-        category: 'Dresses',
-        style: 'Formal',
-        size: ['S', 'M', 'L']
-    },
-    {
-        id: 4,
-        name: "Casual Cotton T-Shirt",
-        price: 29.99,
-        image: t2,
-        colors: ['#FFFFFF', '#FFB6C1', '#98FB98'],
-        category: 'T-Shirts',
-        style: 'Casual',
-        size: ['XS', 'S', 'M', 'L', 'XL']
-    },
-    {
-        id: 5,
-        name: "Business Blazer",
-        price: 149.99,
-        image: t1,
-        colors: ['#000000', '#1E90FF'],
-        category: 'Outerwear',
-        style: 'Business',
-        size: ['S', 'M', 'L']
-    },
-    {
-        id: 6,
-        name: "Summer Beach Dress",
-        price: 59.99,
-        image: t2,
-        colors: ['#FFB6C1', '#98FB98', '#87CEEB'],
-        category: 'Dresses',
-        style: 'Vacation',
-        size: ['XS', 'S', 'M', 'L']
-    }
-];
-
-const sortOptions = [
-  { value: 'best-selling', label: 'Best selling' },
-  { value: 'alpha-asc', label: 'Alphabetically, A-Z' },
-  { value: 'alpha-desc', label: 'Alphabetically, Z-A' },
-  { value: 'price-asc', label: 'Price, low to high' },
-  { value: 'price-desc', label: 'Price, high to low' },
-  { value: 'date-asc', label: 'Date, old to new' },
-  { value: 'date-desc', label: 'Date, new to old' }
+// Sample products data
+const womenProducts = [
+  {
+    id: 1,
+    name: 'Túi Capucines MM',
+    image: womenProduct
+  },
+  {
+    id: 2,
+    name: 'Túi Capucines BB',
+    image: womenProduct
+  },
+  {
+    id: 3,
+    name: 'Túi Capucines Mini',
+    image: womenProduct
+  },
+  {
+    id: 4,
+    name: 'Túi Capucines PM',
+    image: womenProduct
+  },
+  {
+    id: 5,
+    name: 'Túi Capucines GM',
+    image: womenProduct
+  },
+  {
+    id: 6,
+    name: 'Túi Capucines PM Plus',
+    image: womenProduct
+  },
+  {
+    id: 7,
+    name: 'Túi Capucines BB Mini',
+    image: womenProduct
+  },
+  {
+    id: 8,
+    name: 'Túi Capucines MM Plus',
+    image: womenProduct
+  }
 ];
 
 const Women = () => {
-  const [showFilters, setShowFilters] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('featured');
-  const [showSortOptions, setShowSortOptions] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const searchInputRef = useRef(null);
-  const [expandedCategories, setExpandedCategories] = useState({
-    category: true,
-    style: true,
-    size: true,
-    color: true,
-    price: true
-  });
-  const [selectedFilters, setSelectedFilters] = useState({
-    category: [],
-    style: [],
-    size: [],
-    color: [],
-    price: []
-  });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Focus input when dropdown opens
   useEffect(() => {
-    if (showSortOptions && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [showSortOptions]);
-
-  // Filter sort options based on search term
-  const filteredSortOptions = sortOptions.filter(option =>
-    option.label.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  const toggleCategory = (category) => {
-    setExpandedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
-  };
-
-  const handleFilterChange = (type, itemId) => {
-    setSelectedFilters(prev => {
-      const updatedFilters = { ...prev };
-      if (updatedFilters[type].includes(itemId)) {
-        updatedFilters[type] = updatedFilters[type].filter(id => id !== itemId);
-      } else {
-        updatedFilters[type] = [...updatedFilters[type], itemId];
-      }
-      return updatedFilters;
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 50,
+      mirror: true,
+      anchorPlacement: 'top-bottom',
+      easing: 'ease-in-out',
+      disable: 'mobile'
     });
+
+    // Refresh AOS on scroll
+    window.addEventListener('scroll', () => {
+      AOS.refresh();
+    });
+
+    return () => {
+      window.removeEventListener('scroll', () => {
+        AOS.refresh();
+      });
+    };
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % womenProducts.length);
   };
 
-  const renderFilterGroup = (type, title) => (
-    <div className="filterGroup">
-        <button 
-            className="categoryHeader" 
-            onClick={() => toggleCategory(type)}
-        >
-            <h4>{title}</h4>
-            <span className={`arrow ${expandedCategories[type] ? 'up' : 'down'}`}>▼</span>
-        </button>
-        {expandedCategories[type] && (
-            <div className="categoryItems">
-                {filterData[type].map(item => (
-                    <label key={item.id}>
-                        <input 
-                            type="checkbox" 
-                            checked={selectedFilters[type].includes(item.id)}
-                            onChange={() => handleFilterChange(type, item.id)}
-                        />
-                        {item.name}
-                        {item.count > 0 && <span>({item.count})</span>}
-                    </label>
-                ))}
-            </div>
-        )}
-    </div>
-  );
-
-  // Filter products based on selected filters
-  const filteredProducts = sampleProducts.filter(product => {
-    const categoryMatch = selectedFilters.category.length === 0 || 
-      selectedFilters.category.some(id => 
-        filterData.category.find(cat => cat.id === id)?.name === product.category
-      );
-
-    const styleMatch = selectedFilters.style.length === 0 || 
-      selectedFilters.style.some(id => 
-        filterData.style.find(s => s.id === id)?.name === product.style
-      );
-
-    const sizeMatch = selectedFilters.size.length === 0 || 
-      selectedFilters.size.some(id => 
-        product.size.includes(filterData.size.find(s => s.id === id)?.name)
-      );
-
-    const priceMatch = selectedFilters.price.length === 0 || 
-      selectedFilters.price.some(id => {
-        const priceRange = filterData.price.find(p => p.id === id)?.name;
-        const price = product.price;
-        
-        switch(priceRange) {
-          case 'Under $50':
-            return price < 50;
-          case '$50 - $100':
-            return price >= 50 && price <= 100;
-          case '$100 - $200':
-            return price > 100 && price <= 200;
-          case 'Over $200':
-            return price > 200;
-          default:
-            return true;
-        }
-      });
-
-    return categoryMatch && styleMatch && sizeMatch && priceMatch;
-  });
-
-  // Sort products
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (selectedSort) {
-      case 'price-asc':
-        return a.price - b.price;
-      case 'price-desc':
-        return b.price - a.price;
-      case 'alpha-asc':
-        return a.name.localeCompare(b.name);
-      case 'alpha-desc':
-        return b.name.localeCompare(a.name);
-      case 'date-asc':
-        return a.id - b.id;
-      case 'date-desc':
-        return b.id - a.id;
-      case 'best-selling':
-        return 0;
-      default:
-        return 0;
-    }
-  });
-
-  const handleSortClick = (value) => {
-    setSelectedSort(value);
-    setShowSortOptions(false);
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + womenProducts.length) % womenProducts.length);
   };
 
   return (
-    <div>
-        <div className="headerWomen">
-            <p className='women'>Women's Collection</p>
-            <p className='quoteWomen'>
-            Discover our curated collection of women's fashion. From elegant dresses to casual wear, 
-            find pieces that express your unique style. Shop the latest trends and timeless classics 
-            designed for the modern woman.
-            </p>
+    <div className="women-container">
+      <div className="women-content">
+        <img src={womenImage} alt="Women" data-aos="fade-up" />
+        <div className="text-content" data-aos="fade-right" data-aos-delay="200">
+          <h1>Túi Capucines</h1>
+          <p>
+            Được đặt tên theo con đường Rue Neuve-des-Capucines ở Paris,
+            nơi Louis Vuitton mở cửa hàng đầu tiên vào năm 1854, túi Capucines
+            là biểu tượng của vẻ đẹp thanh lịch vượt thời gian và bí thuật chế tác
+            thủ công lâu đời của Maison, với màu sắc và kích thước đa dạng
+            cùng tính ứng dụng cao.
+          </p>
+          <p className="availability">
+            Chỉ có tại các cửa hàng chính thức hoặc liên hệ Trung tâm tư vấn
+            Khách hàng của Louis Vuitton.
+          </p>
+          <div className="button-group" data-aos="fade-right" data-aos-delay="400">
+            <button className="store-button">Tìm cửa hàng</button>
+            <button className="contact-button">Liên hệ với Chuyên viên tư vấn</button>
+          </div>
         </div>
 
-        <div className="filterSortContainer">
-            <div className="filterSection">
-                <button className="filterButton" onClick={toggleFilters}>
-                    <span>Filter</span>
-                    <span className={`arrow ${showFilters ? 'up' : 'down'}`}>▼</span>
-                </button>
-                <span className="productCount">{sortedProducts.length} products</span>
+        <div className="women-products-grid">
+          {womenProducts.map((product, index) => (
+            <div key={product.id} data-aos="fade-left" data-aos-delay={index * 100}>
+              <WomenProduct {...product} />
             </div>
-
-            <div className="sortSection">
-                <div className="sortDropdown">
-                    {!showSortOptions ? (
-                        <button 
-                            className="sortButton" 
-                            onClick={() => {
-                                setShowSortOptions(true);
-                                setSearchTerm('');
-                            }}
-                        >
-                            {sortOptions.find(opt => opt.value === selectedSort)?.label || 'Sort by'}
-                            <span className={`arrow ${showSortOptions ? 'up' : 'down'}`}>▼</span>
-                        </button>
-                    ) : (
-                        <div className="sortSearchContainer">
-                            <input
-                                ref={searchInputRef}
-                                type="text"
-                                className="sortSearch"
-                                placeholder="Type to filter..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                onBlur={() => {
-                                    setTimeout(() => {
-                                        if (!document.activeElement?.closest('.sortDropdown')) {
-                                            setShowSortOptions(false);
-                                        }
-                                    }, 200);
-                                }}
-                            />
-                        </div>
-                    )}
-                    {showSortOptions && (
-                        <div className="sortOptions">
-                            {filteredSortOptions.map(option => (
-                                <button
-                                    key={option.value}
-                                    className={`sortOption ${selectedSort === option.value ? 'active' : ''}`}
-                                    onClick={() => handleSortClick(option.value)}
-                                >
-                                    {option.label}
-                                </button>
-                            ))}
-                            {filteredSortOptions.length === 0 && (
-                                <div className="noResults">No matching options</div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </div>
+          ))}
+        </div>
+        
+        <div className="view-more-container" data-aos="fade-left">
+          <button className="view-more-button">Xem thêm</button>
         </div>
 
-        <div className='bodyWomen'>
-            {showFilters && (
-                <div className="filterBar">
-                    <div className="filterOptions">
-                        {renderFilterGroup('category', 'Category')}
-                        {renderFilterGroup('style', 'Style')}
-                        {renderFilterGroup('size', 'Size')}
-                        {renderFilterGroup('color', 'Color')}
-                        {renderFilterGroup('price', 'Price')}
-                    </div>
-                </div>
-            )}
-            
-            <div className="productsGrid">
-                {sortedProducts.map(product => (
-                    <Product
-                        key={product.id}
-                        name={product.name}
-                        price={product.price}
-                        image={product.image}
-                        colors={product.colors}
-                    />
-                ))}
-            </div>
+        <div className="women2-container">
+          <img src={women2Image} alt="Women Collection" className="women2-image" data-aos="fade-up" />
         </div>
+
+        <div className="split-section">
+          <div className="left-section">
+            <img src={women3Image} alt="Women Collection" className="women3-image" data-aos="fade-up" />
+          </div>
+          <div className="right-section" data-aos="fade-up">
+            <div className="slider-container">
+              <button className="slider-button prev" onClick={prevSlide}>
+                <IoIosArrowBack />
+              </button>
+              <div className="slider-content">
+                <WomenProduct {...womenProducts[currentSlide]} />
+              </div>
+              <button className="slider-button next" onClick={nextSlide}>
+                <IoIosArrowForward />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="craftsmanship-section">
+          <h2 className="craftsmanship-title" data-aos="fade-right">Bí thuật chế tác</h2>
+          <p className="craftsmanship-description" data-aos="fade-right" data-aos-delay="200">
+            Vượt qua khỏi giới hạn của một món phụ kiện bằng da, túi Capucines 
+            là hiện thân của sự khéo léo và tài nghệ vô song. Đằng sau thiết kế 
+            tinh giản của túi Capucines là cả quá trình sáng tạo phức tạp và tay 
+            nghề thủ công đỉnh cao: mỗi chiếc túi có thể cần đến 250 bước chế 
+            tác tỉ mỉ và chỉ được thực hiện bởi những nghệ nhân giàu kinh 
+            nghiệm nhất của Louis Vuitton.
+          </p>
+          <div className="craftsmanship-image" data-aos="fade-up" data-aos-delay="400">
+            <img src={womenProduct} alt="Craftsmanship" />
+          </div>
+        </div>
+
+        <div className="store-discovery-section">
+          <h2 className="store-discovery-title" data-aos="fade-right">
+            Khám phá túi Capucines tại cửa hàng
+          </h2>
+          <p className="store-discovery-description" data-aos="fade-right" data-aos-delay="200">
+            Túi Capucies hiển trưng tại các cửa hàng Louis Vuitton đều được 
+            tuyển chọn tỉ mỉ để mang đến trải nghiệm độc đáo cho quý khách. 
+            Vui lòng liên hệ với Chuyên viên tư vấn khách hàng để đặt lịch hẹn 
+            hoặc cập nhật thêm thông tin về sản phẩm.
+          </p>
+          <div className="store-discovery-buttons" data-aos="fade-right" data-aos-delay="400">
+            <button className="store-finder-button">Tìm cửa hàng</button>
+            <button className="contact-advisor-button">Liên hệ với Chuyên viên tư vấn</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Women; 
+export default Women;

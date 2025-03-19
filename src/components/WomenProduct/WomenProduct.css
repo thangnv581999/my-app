@@ -1,0 +1,231 @@
+.women-product {
+    background: white;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+}
+
+.women-product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.women-product-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.women-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+    transition: transform 0.5s ease;
+}
+
+.women-product:hover .women-product-image img {
+    transform: scale(1.1);
+}
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+.favorite-button svg {
+    width: 20px;
+    height: 20px;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.favorite-button.active {
+    background-color: white;
+}
+
+.favorite-button.active svg {
+    color: #000;
+    fill: #000;
+}
+
+.women-product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    text-align: center;
+    z-index: 2;
+}
+
+.women-product-name {
+    margin: 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.women-product-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.women-product-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.favorite-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    z-index: 9999;
+    animation: slideInDown 0.3s ease-out;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.notification-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notification-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.notification-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.notification-subtext {
+    font-size: 14px !important;
+    color: #666 !important;
+    margin: 0 !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.close-notification {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.close-notification:hover {
+    color: #000;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .women-product-name {
+        font-size: 13px;
+    }
+
+    .favorite-button {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+
+    .favorite-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .women-product-description {
+        font-size: 12px;
+    }
+
+    .women-product-price {
+        font-size: 14px;
+    }
+
+    .notification-content {
+        width: calc(100% - 40px);
+        max-width: 400px;
+    }
+
+    .notification-text {
+        flex-wrap: wrap;
+        white-space: normal;
+        gap: 4px;
+    }
+} 
